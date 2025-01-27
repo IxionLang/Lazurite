@@ -31,6 +31,10 @@ data class AssignmentExpression(
     override fun <R, T> accept(visitor: ResultVisitor<R, T>, t: T): R =
         visitor.visit(this, t)
 
+    override fun compile(): String {
+        TODO("Not yet implemented")
+    }
+
     override fun toString(): String =
         String.format("%s %s= %s", target,  if ((operation == null)) "" else operation.toString(), expression)
 }

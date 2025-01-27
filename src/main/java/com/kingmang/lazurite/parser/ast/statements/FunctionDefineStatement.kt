@@ -21,6 +21,10 @@ data class FunctionDefineStatement(
     override fun <R, T> accept(visitor: ResultVisitor<R, T>, input: T): R? =
         visitor.visit(this, input)
 
+    override fun compile(): String {
+        TODO("Not yet implemented")
+    }
+
     override fun toString(): String =
         if (body is ReturnStatement)
             String.format("func %s%s = %s", this.name, this.arguments, this.body.expression)

@@ -84,6 +84,10 @@ data class ForeachArrayStatement(
     override fun <R, T> accept(visitor: ResultVisitor<R, T>, input: T): R? =
         visitor.visit(this, input)
 
+    override fun compile(): String {
+        TODO("Not yet implemented")
+    }
+
     override fun toString(): String =
         String.format("for %s : %s %s", this.variable, this.container, this.body)
 }

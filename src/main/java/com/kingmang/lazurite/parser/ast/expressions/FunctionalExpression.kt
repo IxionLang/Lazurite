@@ -87,6 +87,10 @@ data class FunctionalExpression(val functionExpr: Expression, val arguments: Mut
     override fun <R, T> accept(visitor: ResultVisitor<R, T>, t: T): R =
         visitor.visit(this, t)
 
+    override fun compile(): String {
+        TODO("Not yet implemented")
+    }
+
     override fun toString(): String {
         val sb = StringBuilder()
         if (functionExpr is ValueExpression && functionExpr.value.type() == Types.STRING)

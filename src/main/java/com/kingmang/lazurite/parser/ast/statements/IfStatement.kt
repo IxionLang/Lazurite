@@ -26,6 +26,12 @@ data class IfStatement(
         return visitor.visit(this, t)
     }
 
+    override fun compile(): String {
+        return "if(" + expression.compile() + ")" + "{" +
+                ifStatement.compile() +
+                "}"
+    }
+
     override fun toString(): String =
         StringBuilder().run {
             this.append("if ").append(expression).append(' ').append(ifStatement)

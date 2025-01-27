@@ -32,6 +32,10 @@ data class ForStatement(
     override fun <R, T> accept(visitor: ResultVisitor<R, T>, input: T): R? =
         visitor.visit(this, input)
 
+    override fun compile(): String {
+        TODO("Not yet implemented")
+    }
+
     override fun toString(): String =
         "for ${this.initialization}, ${this.termination}, ${this.increment} ${this.statement}"
 }

@@ -18,6 +18,10 @@ data class PrintlnStatement(val expression: Expression) : InterruptableNode(), S
     override fun <R, T> accept(visitor: ResultVisitor<R, T>, input: T): R? =
         visitor.visit(this, input)
 
+    override fun compile(): String {
+        return "println(" + expression.compile() + ");"
+    }
+
     override fun toString(): String =
         "println ${this.expression}"
 }

@@ -24,4 +24,8 @@ class ThrowStatement(
 
     override fun <R, T> accept(visitor: ResultVisitor<R, T>, input: T): R? =
         null
+
+    override fun compile(): String {
+        TODO("Not yet implemented")
+    }
 }

@@ -27,6 +27,10 @@ class DoWhileStatement(val condition: Expression, val statement: Statement) : In
         return visitor.visit(this, t)
     }
 
+    override fun compile(): String {
+        TODO("Not yet implemented")
+    }
+
     override fun toString(): String {
         return "do $statement while $condition"
     }

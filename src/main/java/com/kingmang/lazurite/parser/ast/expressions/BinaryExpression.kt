@@ -339,6 +339,10 @@ data class BinaryExpression(
     override fun <R, T> accept(visitor: ResultVisitor<R, T>, t: T): R =
         visitor.visit(this, t)
 
+    override fun compile(): String {
+        return eval().asString();
+    }
+
     override fun toString(): String =
         String.format("%s %s %s", expr1, operation, expr2)
 

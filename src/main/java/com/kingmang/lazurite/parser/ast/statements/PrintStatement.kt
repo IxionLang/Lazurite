@@ -18,6 +18,10 @@ data class PrintStatement(val expression: Expression) : InterruptableNode(), Sta
     override fun <R, T> accept(visitor: ResultVisitor<R, T>, input: T): R? =
         visitor.visit(this, input)
 
+    override fun compile(): String {
+        return "print(" + expression.compile() + ");";
+    }
+
     override fun toString(): String =
         "print ${this.expression}"
 }

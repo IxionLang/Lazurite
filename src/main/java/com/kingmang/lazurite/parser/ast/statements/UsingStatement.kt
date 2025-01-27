@@ -115,6 +115,10 @@ data class UsingStatement(val expression: Expression) : InterruptableNode(), Sta
     override fun <R, T> accept(visitor: ResultVisitor<R, T>, input: T): R? =
         visitor.visit(this, input)
 
+    override fun compile(): String {
+        TODO("Not yet implemented")
+    }
+
     override fun toString(): String =
         "using ${this.expression}"
 

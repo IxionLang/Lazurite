@@ -18,6 +18,10 @@ data class FunctionReferenceExpression(val name: String) : InterruptableNode(), 
     override fun <R, T> accept(visitor: ResultVisitor<R, T>, t: T): R =
         visitor.visit(this, t)
 
+    override fun compile(): String {
+        TODO("Not yet implemented")
+    }
+
     override fun toString(): String =
         "::${this.name}"
 }

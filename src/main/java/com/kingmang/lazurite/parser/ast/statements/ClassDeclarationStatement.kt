@@ -27,6 +27,10 @@ data class ClassDeclarationStatement(val name: String) : Statement {
     override fun <R, T> accept(visitor: ResultVisitor<R, T>, input: T): R? =
         visitor.visit(this, input)
 
+    override fun compile(): String {
+        TODO("Not yet implemented")
+    }
+
     override fun toString(): String =
         String.format("class %s {\n  %s  %s}", name, fields, methods)
 }

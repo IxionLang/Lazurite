@@ -20,6 +20,10 @@ data class ReturnStatement(val expression: Expression) : RuntimeException(), Sta
     override fun <R, T> accept(visitor: ResultVisitor<R, T>, input: T): R? =
         visitor.visit(this, input)
 
+    override fun compile(): String {
+        return "return " + expression.compile() + ";"
+    }
+
     override fun toString(): String =
         "return ${this.expression}"
 }

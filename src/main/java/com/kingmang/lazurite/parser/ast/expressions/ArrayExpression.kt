@@ -15,6 +15,10 @@ data class ArrayExpression(val elements: List<Expression>) : Expression {
     override fun <R, T> accept(visitor: ResultVisitor<R, T>, t: T): R =
         visitor.visit(this, t)
 
+    override fun compile(): String {
+        TODO("Not yet implemented")
+    }
+
     override fun toString(): String =
         this.elements.toString()
 }

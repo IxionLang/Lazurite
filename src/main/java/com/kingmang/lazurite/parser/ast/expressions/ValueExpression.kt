@@ -26,6 +26,10 @@ data class ValueExpression(val value: LzrValue) : InterruptableNode(), Expressio
     override fun <R, T> accept(visitor: ResultVisitor<R, T>, input: T): R? =
         visitor.visit(this, input)
 
+    override fun compile(): String {
+        return value.asString()
+    }
+
     override fun toString(): String =
         if (value.type() == Types.STRING)
             "\"" + value.asString() + "\""

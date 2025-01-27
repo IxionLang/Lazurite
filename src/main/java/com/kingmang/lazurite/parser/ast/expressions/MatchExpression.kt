@@ -147,6 +147,10 @@ data class MatchExpression(val expression: Expression, val patterns: List<Patter
     override fun <R, T> accept(visitor: ResultVisitor<R, T>, t: T): R =
         visitor.visit(this, t)
 
+    override fun compile(): String {
+        TODO("Not yet implemented")
+    }
+
     override fun toString(): String {
         val sb = StringBuilder()
         sb.append("match ").append(expression).append(" {")
@@ -233,6 +237,10 @@ data class MatchExpression(val expression: Expression, val patterns: List<Patter
 
                 override fun <R, T> accept(visitor: ResultVisitor<R, T>, input: T): R? =
                     null
+
+                override fun compile(): String {
+                    TODO("Not yet implemented")
+                }
 
                 override fun toString(): String =
                     "_" + super.toString()

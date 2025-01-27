@@ -23,6 +23,14 @@ class BlockStatement : InterruptableNode(), Statement {
     override fun <R, T> accept(visitor: ResultVisitor<R, T>, input: T): R? =
         visitor.visit(this, input)
 
+    override fun compile(): String {
+        var buffer = StringBuilder();
+        for(i in statements){
+            buffer.append(i.compile());
+        }
+        return buffer.toString();
+    }
+
     override fun toString(): String =
         StringBuilder().run {
             statements.forEach { this.append(it.toString()).append(Console.newline()) }

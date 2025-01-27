@@ -6,5 +6,6 @@ import com.kingmang.lazurite.patterns.visitor.Visitor
 interface Node {
     fun accept(visitor: Visitor)
 
+    fun compile() : String;
     fun <R, T> accept(visitor: ResultVisitor<R, T>, input: T): R?
 }

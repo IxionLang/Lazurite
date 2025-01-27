@@ -34,6 +34,53 @@ object Handler {
         runProgram(Loader.readSource(path), path, optLvl, printResultOfOptimization)
     }
 
+    fun testRun(path: String, optLvl: Int, printResultOfOptimization: Boolean){
+        Libraries.add(path);
+        val code = Loader.readSource(path)
+
+        CrashHandler.register(
+            SimpleCrashReporter(),
+            ConsoleReportOutput(),
+            FileReportOutput()
+        )
+
+        try {
+            val input = Preprocessor.preprocess(code)
+            CrashHandler.getCrashReporter().addProcessor(SourceCodeProcessor(input))
+
+            val lexer: ILexer = LexerImplementation(input)
+
+            val tokens = lexer.tokenize()
+            CrashHandler.getCrashReporter().addProcessor(TokensProcessor(tokens))
+
+            val parser: IParser =
+                ParserImplementation(tokens, path)
+            val parsedProgram = parser.parse()
+            println(parsedProgram)
+            if (parser.parseErrors.hasErrors()) {
+                println(parser.parseErrors)
+                return
+            }
+            val program : Statement;
+            //if(optLvl > 0) {
+            // program = Optimizer.optimize(parsedProgram, optLvl, printResultOfOptimization);
+            //}else
+            program = parsedProgram;
+
+            program.accept(FunctionAdder())
+
+            try {
+                println(program.compile())
+            } catch (ex: LzrException) {
+                ex.print(System.err)
+            } catch (throwable: Throwable) {
+                CrashHandler.proceed(throwable)
+            }
+        } catch (throwable: Throwable) {
+            CrashHandler.proceed(throwable)
+        }
+    }
+
     @JvmStatic
     @Throws(IOException::class)
     fun run(path: String, showTokens: Boolean) {

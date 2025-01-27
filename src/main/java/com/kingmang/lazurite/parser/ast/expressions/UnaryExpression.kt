@@ -114,6 +114,10 @@ data class UnaryExpression(
     override fun <R, T> accept(visitor: ResultVisitor<R, T>, input: T): R? =
         visitor.visit(this, input)
 
+    override fun compile(): String {
+        TODO("Not yet implemented")
+    }
+
     override fun toString(): String =
         when (this.operation) {
             Operator.INCREMENT_POSTFIX, Operator.DECREMENT_POSTFIX -> String.format("%s %s", expr1, this.operation)
